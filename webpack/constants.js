@@ -1,6 +1,6 @@
 const path = require('path')
 
-export const APP_TITLE = 'KSP tricko sifra'
+export const APP_TITLE = 'Stranka na obedy'
 export const APP_DIR = path.join(__dirname, '..')
 export const SRC_DIR = path.join(APP_DIR, 'src')
 export const NODE_DIR = path.join(APP_DIR, 'node_modules')
