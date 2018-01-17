@@ -1,4 +1,4 @@
-import {setIn, getIn} from '../utils/helpers'
+import { setIn, getIn } from '../utils/helpers'
 
 export const PATH_APP = ['app']
 

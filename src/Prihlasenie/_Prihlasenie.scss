@@ -1,0 +1,9 @@
+#exampleSelect {
+    border: 1px solid green;
+    margin: 30px;
+    background: red;
+    &:hover {
+        background-color: green;
+        transition: background-color 2s ease-out;
+    }
+}
