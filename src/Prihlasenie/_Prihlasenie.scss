@@ -1,12 +1,17 @@
-#prihlasenie{
-    display: inline-block;
+#prihlasenie{    
     width: 20%;
-    
-    background-color: red;
+    float: right;
+    padding: 10px;
+    color: rgb(93, 214, 23);  
+    font-weight: bold;    
 }
 
 #registracia{
-    background-color: green;
+    width: 20%;
+    padding: 10px;
+    color: rgb(247, 50, 16);  
+    font-weight: bold;
+   
 }
 
 .pozadie {
@@ -17,7 +22,10 @@
 }
 
 .mojForm {
-    & > input, label, button {
+    & > input, label {
         margin: 10px;
+    }
+    button {
+        margin: 10px;        
     }
 }

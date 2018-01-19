@@ -8,7 +8,7 @@ export default class Prihlasovanie extends React.Component {
       <div>
         <img src={Pozadie} className="pozadie" />
         <Form className="mojForm" style={{ position: 'relative' }}>
-          <div id="prihlasenie">
+          <div id="prihlasenie">  Prihlasovanie
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <Label for="email" className="mr-sm-2">Email</Label>
               <Input type="email" name="email" id="email" placeholder="Email" />
@@ -19,7 +19,7 @@ export default class Prihlasovanie extends React.Component {
             </FormGroup>
             <Button>Prihlásiť</Button>
           </div>
-          <div id="registracia">
+          <div id="registracia"> Registrácia
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <Label for="registracia_meno" className="mr-sm-2">Meno</Label>
               <Input type="text" name="email" id="registracia_meno" placeholder="Meno" />
@@ -40,6 +40,7 @@ export default class Prihlasovanie extends React.Component {
               <Label for="heslo_registracia_znovu" className="mr-sm-2">Zopakuj heslo</Label>
               <Input type="password" name="password" id="heslo_registracia_znova" placeholder="Heslo" />
             </FormGroup>
+            <Button>Registruj</Button>
           </div>
         </Form>
       </div>
