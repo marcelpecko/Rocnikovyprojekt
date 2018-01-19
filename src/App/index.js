@@ -1,22 +1,19 @@
 import React from 'react'
-import { Button } from 'reactstrap'
 import { connect } from 'react-redux'
-import { buttonTextSelector } from './state'
-import { toggleButtonText } from './actions'
-import MyForm from '../MyForm'
+import MyForm from '../Prihlasenie'
+import Marcel from '../Nastavenie_profilu_stravnik'
 
-const App = ({ buttonText, toggleButtonText }) => (
+const App = () => (
   <div>
-    <Button onClick={toggleButtonText}>{buttonText}</Button>
     <MyForm />
   </div>
 )
 
 export default connect(
   (state) => ({
-    buttonText: buttonTextSelector(state),
+
   }),
   {
-    toggleButtonText,
+
   },
 )(App)

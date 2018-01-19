@@ -1,4 +1,4 @@
-import {PATH_APP} from './state'
+import { PATH_APP } from './state'
 
 export const toggleButtonText = () => ({
   type: 'Toggle button text',

@@ -1,9 +1,23 @@
-#exampleSelect {
-    border: 1px solid green;
-    margin: 30px;
-    background: red;
-    &:hover {
-        background-color: green;
-        transition: background-color 2s ease-out;
+#prihlasenie{
+    display: inline-block;
+    width: 20%;
+    
+    background-color: red;
+}
+
+#registracia{
+    background-color: green;
+}
+
+.pozadie {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-size: cover;
+}
+
+.mojForm {
+    & > input, label, button {
+        margin: 10px;
     }
 }
