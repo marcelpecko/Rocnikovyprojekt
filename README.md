@@ -11,4 +11,4 @@ are **8.1.2** and **5.4.2**. Lower version may have some problems.
 
 
 ## Scripts
-To run your app in dev mode, use `npm run start`
+To run your app in dev mode, use `npm run dev`
