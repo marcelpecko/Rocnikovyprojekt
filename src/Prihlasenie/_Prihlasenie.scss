@@ -1,18 +1,61 @@
-#prihlasenie{    
+.prihlasenie{    
     width: 20%;
-    float: right;
     padding: 10px;
-    color: rgb(93, 214, 23);  
-    font-weight: bold;    
+    color: black;  
+    font-weight: bold;   
+    margin:0;
+    text-align:center; 
+    position: fixed;
+    left: 37%;
+    top: 25%;
+    
+    input, button {
+        background-color: rgb(206, 206, 206);
+        color: black;
+    }
 }
 
-#registracia{
+.toggle{
     width: 20%;
     padding: 10px;
     color: rgb(247, 50, 16);  
     font-weight: bold;
-   
+    float: right;
+
 }
+ 
+.toggle-registracia{
+      //display: none;
+    // visibility: hidden;
+     // opacity: 0;
+  //  background-image: url('./Obrazky/listok.png');
+}
+
+
+.toggle-registracia :hover{
+    color: gold;
+    //display: inline;
+    visibility: visible; 
+      
+}
+
+
+/*
+
+.js .toggle-registracia {
+    overflow: hidden;
+    display: none;
+    transition: height .2s;
+    background: #ccc;
+}
+
+.js .toggle-header {
+    cursor: pointer;
+    -ms-touch-action: manipulation; /
+    touch-action: manipulation; 
+}
+
+*/
 
 .pozadie {
     width: 100%;
