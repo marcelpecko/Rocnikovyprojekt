@@ -1,0 +1,10 @@
+{
+    "extends": "vacuumlabs",
+    "env": {
+      "node": true,
+      "jest": true
+    },
+    "settings": {
+        "import/resolver": "node"
+    }
+  }

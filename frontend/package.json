@@ -1,0 +1,27 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "eslint-import-resolver-webpack": "^0.9.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "eslint": "eslint src/**.js",
+    "eslint-fix": "eslint --fix src/**.js"
+  },
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "babel-eslint": "^8.2.3",
+    "eslint": "^4.19.1",
+    "eslint-config-vacuumlabs": "^1.5.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-react": "^7.8.2"
+  }
+}
