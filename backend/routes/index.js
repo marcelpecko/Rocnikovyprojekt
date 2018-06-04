@@ -6,15 +6,15 @@ const dbConfiguration = {
   port: 5432,
   user: 'marcel97',
   password: 'databaza123',
-  database: 'playground',
+  database: 'marcel97',
 }
 
 const pgp = require('pg-promise')(/*options*/)
 const db = pgp(dbConfiguration)
 
-db.query('SELECT * FROM playground', 123)
+db.any('SELECT * FROM playground', [true])
   .then((data) => {
-    console.log('DATA:', data.value)
+    console.log('DATA:', data)
   })
   .catch((error) => {
     console.log('ERROR:', error)
