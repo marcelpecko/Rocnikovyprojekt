@@ -1,7 +1,8 @@
 import React from 'react'
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 import Pozadie from '../obrazky/pozadie.jpg'
-import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {updateValue} from '../actions'
 import './Registracia.css'
 
 class Registracia extends React.Component {
@@ -9,7 +10,13 @@ class Registracia extends React.Component {
     return (
       <div>
         <img src={Pozadie} className="pozadie" />
-        <Form className="mojForm" style={{position: 'relative'}}>
+        <Form
+          className="mojForm"
+          style={{position: 'relative'}}
+          onSubmit={(e) => {
+            e.preventDefault()
+          }}
+        >
           <div className="toggle">
             <div className="toggle-header">
               <h3> Registrácia </h3>
@@ -18,7 +25,19 @@ class Registracia extends React.Component {
                   <Label for="registracia_meno" className="mr-sm-2">
                     Meno
                   </Label>
-                  <Input type="text" name="email" id="registracia_meno" placeholder="Meno" />
+                  <Input
+                    type="text"
+                    id="registracia_meno"
+                    placeholder="Meno"
+                    value={this.props.name}
+                    onChange={(event) =>
+                      this.props.updateValue(
+                        ['register', 'name'],
+                        event.target.value,
+                        'Change name'
+                      )
+                    }
+                  />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                   <Label for="registracia_priezvisko" className="mr-sm-2">
@@ -26,16 +45,35 @@ class Registracia extends React.Component {
                   </Label>
                   <Input
                     type="text"
-                    name="email"
                     id="registracia_priezvisko"
                     placeholder="Priezvisko"
+                    value={this.props.surname}
+                    onChange={(event) =>
+                      this.props.updateValue(
+                        ['register', 'surname'],
+                        event.target.value,
+                        'Change surname'
+                      )
+                    }
                   />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                   <Label for="email" className="mr-sm-2">
                     Email
                   </Label>
-                  <Input type="email" name="email" id="email" placeholder="Email" />
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="Email"
+                    value={this.props.email}
+                    onChange={(event) =>
+                      this.props.updateValue(
+                        ['register', 'email'],
+                        event.target.value,
+                        'Change email'
+                      )
+                    }
+                  />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                   <Label for="heslo_registracia" className="mr-sm-2">
@@ -43,25 +81,34 @@ class Registracia extends React.Component {
                   </Label>
                   <Input
                     type="password"
-                    name="password"
                     id="heslo_registracia"
                     placeholder="Heslo"
+                    value={this.props.password}
+                    onChange={(event) =>
+                      this.props.updateValue(
+                        ['register', 'password'],
+                        event.target.value,
+                        'Change password'
+                      )
+                    }
                   />
                 </FormGroup>
                 <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-                  <Label for="heslo_registracia_znovu" className="mr-sm-2">
-                    Zopakuj heslo
-                  </Label>
+                  <Label className="mr-sm-2">Zopakuj heslo</Label>
                   <Input
                     type="password"
-                    name="password"
-                    id="heslo_registracia_znova"
                     placeholder="Heslo"
+                    value={this.props.passwordRepeat}
+                    onChange={(event) =>
+                      this.props.updateValue(
+                        ['register', 'passwordRepeat'],
+                        event.target.value,
+                        'Change password repeat'
+                      )
+                    }
                   />
                 </FormGroup>
-                <Button color="primary" onClick={this.fileUploadHandler}>
-                  Registrovať
-                </Button>
+                <Button color="primary">Registrovať</Button>
               </div>
             </div>
           </div>
@@ -71,4 +118,15 @@ class Registracia extends React.Component {
   }
 }
 
-export default Registracia
+export default connect(
+  (state) => {
+    return {
+      name: state.register.name,
+      surname: state.register.surname,
+      email: state.register.email,
+      password: state.register.password,
+      passwordrepeat: state.register.passwordrepeat,
+    }
+  },
+  {updateValue}
+)(Registracia)

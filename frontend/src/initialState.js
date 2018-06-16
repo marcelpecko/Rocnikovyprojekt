@@ -1,6 +1,11 @@
-import {setInitialState as appInitialState} from './App/state.js'
-import {compose} from './utils/helpers'
+const state = {
+  register: {
+    name: '',
+    surname: '',
+    email: '',
+    password: '',
+    passwordRepeat: '',
+  },
+}
 
-const state = {}
-
-export default () => compose(appInitialState)(state)
+export default () => state

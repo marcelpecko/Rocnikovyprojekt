@@ -1,7 +1,6 @@
 import React from 'react'
 import {Button, Form, FormGroup, ButtonGroup, Label, Input} from 'reactstrap'
 import Pozadie from '../obrazky/pozadie.jpg'
-import {withRouter} from 'react-router-dom'
 import './Prihlasenie.css'
 
 class Prihlasovanie extends React.Component {
