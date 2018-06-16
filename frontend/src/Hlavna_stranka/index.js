@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {Button, Label, Input, Tabla, ImageUploader, Badge} from 'reactstrap'
+import React from 'react'
+import {Button, Badge} from 'reactstrap'
 import axios from 'axios'
-import Pouzivatelfotka from './Obrazky/Icon-user.png'
+import UserIcon from 'react-icons/lib/fa/user'
 
 export default class Prihlasovanie extends React.Component {
   render() {
@@ -9,7 +9,7 @@ export default class Prihlasovanie extends React.Component {
       <div>
         <div className="zaklad">
           <div className="zaklad-pouzivatel">
-            <img src={Pouzivatelfotka} className="pouzivatelfotka" />
+            <UserIcon className="pouzivatelfotka" />
             Marcel Pecko
             <br /> mail> marcelpecko97@gmail.com
             <br /> tel> 0908805510
