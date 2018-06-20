@@ -1,6 +1,8 @@
 import React from 'react'
 import {Button, Form, FormGroup, ButtonGroup, Label, Input} from 'reactstrap'
 import Pozadie from '../obrazky/pozadie.jpg'
+import {loginUser} from './actions'
+import {connect} from 'react-redux'
 import './Prihlasenie.css'
 
 class Prihlasovanie extends React.Component {
@@ -25,12 +27,7 @@ class Prihlasovanie extends React.Component {
               <Input type="password" name="password" id="heslo" placeholder="Heslo" />
             </FormGroup>
             <ButtonGroup>
-              <Button
-                color="success"
-                onClick={() => {
-                  this.props.history.push('hlavna')
-                }}
-              >
+              <Button color="success" onClick={this.props.loginUser}>
                 Prihlásiť
               </Button>
               <Button
@@ -49,4 +46,7 @@ class Prihlasovanie extends React.Component {
   }
 }
 
-export default Prihlasovanie
+export default connect(
+  null,
+  {loginUser}
+)(Prihlasovanie)

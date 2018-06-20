@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import {Button, Form, FormGroup, ButtonGroup, Label, Input, Col} from 'reactstrap'
 import axios from 'axios'
-import Pouzivatelfotka from './Obrazky/Icon-user.png'
+import Pouzivatelfotka from 'react-icons/lib/fa/user'
+import './Nastavenie_profilu_pouzivatel.css'
 
 export default class Prihlasovanie extends React.Component {
   state = {
@@ -45,16 +46,11 @@ export default class Prihlasovanie extends React.Component {
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label for="examplePassword" sm={2}>
+              <Label for="surname" sm={2}>
                 Priezvisko:
               </Label>
               <Col sm={3}>
-                <Input
-                  type="password"
-                  name="password"
-                  id="examplePassword"
-                  placeholder="Priezvisko"
-                />
+                <Input type="name" name="surname" id="surname" placeholder="Priezvisko" />
               </Col>
             </FormGroup>
             <FormGroup row>

@@ -1,0 +1,7 @@
+.toggle-registracia {
+    display: flex;
+    flex-direction: column;
+    > .form-group {
+        margin-bottom: 0 !important;
+    }
+}

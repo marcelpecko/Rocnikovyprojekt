@@ -1,23 +1,74 @@
 import React from 'react'
-import {Button, Badge} from 'reactstrap'
-import axios from 'axios'
+import {Button, Badge, Label, Col, ButtonGroup} from 'reactstrap'
 import UserIcon from 'react-icons/lib/fa/user'
+import './Hlavna_stranka.css'
 
 export default class Prihlasovanie extends React.Component {
   render() {
     return (
-      <div>
+      <div className="flex">
         <div className="zaklad">
+          <UserIcon className="pouzivatelfotka" />
           <div className="zaklad-pouzivatel">
-            <UserIcon className="pouzivatelfotka" />
-            Marcel Pecko
-            <br /> mail> marcelpecko97@gmail.com
-            <br /> tel> 0908805510
+            {/**
+            <group row>
+              <Label for="name" sm={2}>
+                Meno:
+              </Label>
+              <Col sm={3}>
+                <Label for="name">Marcel Pecko</Label>
+              </Col>
+            </group>
+            <group row>
+              <Label for="mail" sm={2}>
+                Mail:
+              </Label>
+              <Col sm={3}>
+                <Label for="mail">marcelpecko97@gmail.com</Label>
+              </Col>
+            </group>
+            <group row>
+              <Label for="tel" sm={2}>
+                Telefon:
+              </Label>
+              <Col sm={3}>
+                <Label for="tel">0908805510</Label>
+              </Col>
+            </group>
+            */}
           </div>
-          Moji stravníci:
-          <br /> <Button>Pridaj stravníka</Button>
+          <ButtonGroup>
+            <Button
+              color="info"
+              className="nastav"
+              onClick={() => {
+                this.props.history.push('pouzivatel')
+              }}
+            >
+              Nastav profil
+            </Button>
+
+            <Button
+              color="warning"
+              onClick={() => {
+                this.props.history.push('stravnik')
+              }}
+            >
+              +
+            </Button>
+          </ButtonGroup>
+          <br />
+          <br />
+          <h5>Moji stravníci: </h5>
           <div className="zaklad-stravnici">
-            <div>stravnik1</div>
+            <br />{' '}
+            <Button
+              onClick={() => {
+                this.props.history.push('vyber')
+              }}
+            >
+              Pridaj stravníka
+            </Button>
           </div>
         </div>
         <div className="upozornenia-tabulka">

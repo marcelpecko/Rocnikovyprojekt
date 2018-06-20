@@ -2,32 +2,38 @@ import React from 'react'
 import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
 import Pozadie from '../obrazky/pozadie.jpg'
 import {connect} from 'react-redux'
-import {updateValue} from '../actions'
+import {updateValue} from '../sharedActions'
+import {registerUser} from './actions'
+import {AvForm, AvField} from 'availity-reactstrap-validation'
+import {nonEmptyField, passwordValidation} from './validations'
 import './Registracia.css'
 
 class Registracia extends React.Component {
   render() {
+    const passwordName = 'password'
+    const passwordRepeatName = 'passwordRepeat'
     return (
       <div>
         <img src={Pozadie} className="pozadie" />
-        <Form
+
+        <AvForm
           className="mojForm"
           style={{position: 'relative'}}
-          onSubmit={(e) => {
-            e.preventDefault()
+          onValidSubmit={(e) => {
+            this.props.registerUser()
           }}
         >
           <div className="toggle">
             <div className="toggle-header">
               <h3> Registrácia </h3>
               <div className="toggle-registracia">
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                   <Label for="registracia_meno" className="mr-sm-2">
                     Meno
                   </Label>
-                  <Input
+                  <AvField
                     type="text"
-                    id="registracia_meno"
+                    name="registracia_meno"
                     placeholder="Meno"
                     value={this.props.name}
                     onChange={(event) =>
@@ -37,15 +43,16 @@ class Registracia extends React.Component {
                         'Change name'
                       )
                     }
+                    validate={nonEmptyField}
                   />
                 </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                   <Label for="registracia_priezvisko" className="mr-sm-2">
                     Priezvisko
                   </Label>
-                  <Input
+                  <AvField
                     type="text"
-                    id="registracia_priezvisko"
+                    name="registracia_priezvisko"
                     placeholder="Priezvisko"
                     value={this.props.surname}
                     onChange={(event) =>
@@ -55,15 +62,16 @@ class Registracia extends React.Component {
                         'Change surname'
                       )
                     }
+                    validate={nonEmptyField}
                   />
                 </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                   <Label for="email" className="mr-sm-2">
                     Email
                   </Label>
-                  <Input
+                  <AvField
                     type="email"
-                    id="email"
+                    name="email"
                     placeholder="Email"
                     value={this.props.email}
                     onChange={(event) =>
@@ -73,15 +81,16 @@ class Registracia extends React.Component {
                         'Change email'
                       )
                     }
+                    validate={{email: true}}
                   />
                 </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                   <Label for="heslo_registracia" className="mr-sm-2">
                     Heslo
                   </Label>
-                  <Input
+                  <AvField
                     type="password"
-                    id="heslo_registracia"
+                    name={passwordName}
                     placeholder="Heslo"
                     value={this.props.password}
                     onChange={(event) =>
@@ -91,12 +100,14 @@ class Registracia extends React.Component {
                         'Change password'
                       )
                     }
+                    validate={passwordValidation}
                   />
                 </FormGroup>
-                <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
+                <FormGroup>
                   <Label className="mr-sm-2">Zopakuj heslo</Label>
-                  <Input
+                  <AvField
                     type="password"
+                    name={passwordRepeatName}
                     placeholder="Heslo"
                     value={this.props.passwordRepeat}
                     onChange={(event) =>
@@ -106,13 +117,17 @@ class Registracia extends React.Component {
                         'Change password repeat'
                       )
                     }
+                    validate={{
+                      ...passwordValidation,
+                      match: {value: passwordName, errorMessage: 'HESLO'},
+                    }}
                   />
                 </FormGroup>
                 <Button color="primary">Registrovať</Button>
               </div>
             </div>
           </div>
-        </Form>
+        </AvForm>
       </div>
     )
   }
@@ -128,5 +143,5 @@ export default connect(
       passwordrepeat: state.register.passwordrepeat,
     }
   },
-  {updateValue}
+  {updateValue, registerUser}
 )(Registracia)

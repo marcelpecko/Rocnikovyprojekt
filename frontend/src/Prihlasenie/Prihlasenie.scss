@@ -16,20 +16,6 @@
   font-weight: bold;
   float: right;
 }
-
-.toggle-registracia {
-  //display: none;
-  // visibility: hidden;
-  // opacity: 0;
-  //  background-image: url('./Obrazky/listok.png');
-}
-
-.toggle-registracia :hover {
-  color: pink;
-  //display: inline;
-  visibility: visible;
-}
-
 /*
 
 .js .toggle-registracia {
@@ -52,6 +38,8 @@
   height: 100%;
   position: absolute;
   background-size: cover;
+  top: 0;
+  left: 0;
 }
 
 .mojForm {
