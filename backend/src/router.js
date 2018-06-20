@@ -28,21 +28,39 @@ db.any('SELECT * FROM playground', [true])
 
 // TODO connect to database
 const users = []
+const boarders = {}
 
 const sampleRequest = (req, res, next) => {
   res.json([{s: 'Som king'}, {s: 'Som king'}, {s: 'Som king'}])
 }
 
 const registerUser = (req, res) => {
-  users.push(req.body)
+  const user = req.body
+  users.push(user)
+  boarders[user.email] = []
+  res.status(HttpStatusCodes.OK).send()
 }
 
 const getUsers = (req, res) => {
   res.status(HttpStatusCodes.OK).json(users)
 }
 
+const addBoarder = (req, res) => {
+  const {user, boarder} = req.body
+  if (!boarders[user.email]) boarders[user.email] = []
+  boarders[user.email].push(boarder)
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const getBoarders = (req, res) => {
+  const {email} = req.query
+  res.status(HttpStatusCodes.OK).json(boarders[email])
+}
+
 router.get('/', sampleRequest)
 router.post('/register', registerUser)
 router.get('/users', getUsers)
+router.post('/boarder', addBoarder)
+router.get('/boarders', getBoarders)
 
 module.exports = router

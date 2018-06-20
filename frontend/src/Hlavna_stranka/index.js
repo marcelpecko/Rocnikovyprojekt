@@ -1,41 +1,33 @@
 import React from 'react'
-import {Button, Badge, Label, Col, ButtonGroup} from 'reactstrap'
+import {Button, Badge, Label, ButtonGroup, FormGroup} from 'reactstrap'
 import UserIcon from 'react-icons/lib/fa/user'
+import {connect} from 'react-redux'
+import Stravnici from './Stravnici'
 import './Hlavna_stranka.css'
 
-export default class Prihlasovanie extends React.Component {
+class HlavnaStranka extends React.Component {
   render() {
+    if (!this.props.user) {
+      this.props.history.push('/')
+      return null
+    }
+    const {name, surname, email} = this.props.user
     return (
       <div className="flex">
         <div className="zaklad">
           <UserIcon className="pouzivatelfotka" />
           <div className="zaklad-pouzivatel">
-            {/**
-            <group row>
-              <Label for="name" sm={2}>
-                Meno:
+            <FormGroup>
+              <Label for="name">
+                Meno: <span className="userInfo">{name}</span>
               </Label>
-              <Col sm={3}>
-                <Label for="name">Marcel Pecko</Label>
-              </Col>
-            </group>
-            <group row>
-              <Label for="mail" sm={2}>
-                Mail:
-              </Label>
-              <Col sm={3}>
-                <Label for="mail">marcelpecko97@gmail.com</Label>
-              </Col>
-            </group>
-            <group row>
-              <Label for="tel" sm={2}>
-                Telefon:
-              </Label>
-              <Col sm={3}>
-                <Label for="tel">0908805510</Label>
-              </Col>
-            </group>
-            */}
+            </FormGroup>
+            <FormGroup>
+              <Label for="surname">Priezvisko: {surname}</Label>
+            </FormGroup>
+            <FormGroup>
+              <Label for="email">Email: {email}</Label>
+            </FormGroup>
           </div>
           <ButtonGroup>
             <Button
@@ -60,23 +52,14 @@ export default class Prihlasovanie extends React.Component {
           <br />
           <br />
           <h5>Moji stravníci: </h5>
-          <div className="zaklad-stravnici">
-            <br />{' '}
-            <Button
-              onClick={() => {
-                this.props.history.push('vyber')
-              }}
-            >
-              Pridaj stravníka
-            </Button>
-          </div>
+          <Stravnici />
         </div>
         <div className="upozornenia-tabulka">
           <div className="upozornenia">
             <h2>
               Upozornenia: <Badge color="danger">New</Badge>
             </h2>
-            <div classsName="upozornenia-text">
+            <div className="upozornenia-text">
               <br />
               Nový jedálny lístok je už zverejnený
               <br /> Jedáleň bude dňa 19.4.2017 zatvorená z dôvodu riaditeľského volna.
@@ -88,3 +71,7 @@ export default class Prihlasovanie extends React.Component {
     )
   }
 }
+
+export default connect((state) => ({
+  user: state.user,
+}))(HlavnaStranka)

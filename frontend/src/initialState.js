@@ -6,6 +6,17 @@ const state = {
     password: '',
     passwordRepeat: '',
   },
+  login: {
+    email: '',
+    password: '',
+  },
+  user: undefined,
+  boarder: {
+    name: '',
+    surname: '',
+    diet: '',
+  },
+  boarders: [],
 }
 
 export default () => state
