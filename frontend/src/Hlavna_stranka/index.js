@@ -56,7 +56,7 @@ class HlavnaStranka extends React.Component {
           <br />
           <br />
           <h4>Moji stravníci: </h4>
-          <Stravnici />
+          <Stravnici history={this.props.history} />
         </div>
         <div className="upozornenia-tabulka">
           <div className="upozornenia">
