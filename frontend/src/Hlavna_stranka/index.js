@@ -23,10 +23,14 @@ class HlavnaStranka extends React.Component {
               </Label>
             </FormGroup>
             <FormGroup>
-              <Label for="surname">Priezvisko: {surname}</Label>
+              <Label for="surname">
+                Priezvisko: <span className="userInfo">{surname}</span>
+              </Label>
             </FormGroup>
             <FormGroup>
-              <Label for="email">Email: {email}</Label>
+              <Label for="email">
+                Email: <span className="userInfo">{email}</span>
+              </Label>
             </FormGroup>
           </div>
           <ButtonGroup>
@@ -51,7 +55,7 @@ class HlavnaStranka extends React.Component {
           </ButtonGroup>
           <br />
           <br />
-          <h5>Moji stravníci: </h5>
+          <h4>Moji stravníci: </h4>
           <Stravnici />
         </div>
         <div className="upozornenia-tabulka">

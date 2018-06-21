@@ -1,7 +1,10 @@
 import React, {Component} from 'react'
 import {Button, Form, FormGroup, ButtonGroup, Label, Input, Col} from 'reactstrap'
 import axios from 'axios'
+import {connect} from 'react-redux'
 import Pouzivatelfotka from 'react-icons/lib/fa/user'
+import {AvForm, AvField} from 'availity-reactstrap-validation'
+import {passwordValidation} from '../Registracia/validations'
 import './Nastavenie_profilu_pouzivatel.css'
 
 export default class Prihlasovanie extends React.Component {
@@ -34,6 +37,24 @@ export default class Prihlasovanie extends React.Component {
   render() {
     return (
       <div className="nastavenie-profilu">
+        <div className="nastavenie-fotky">
+          <input
+            style={{display: 'none'}}
+            type="file"
+            onChange={this.fileSelectedHandler}
+            ref={(fileInput) => (this.fileInput = fileInput)}
+          />
+
+          <img src={Pouzivatelfotka} className="pouzivatelfotka" />
+          <ButtonGroup>
+            <Button color="primary" onClick={() => this.fileInput.click()}>
+              PickFile
+            </Button>
+            <Button color="success" onClick={this.fileUploadHandler}>
+              Upload
+            </Button>
+          </ButtonGroup>
+        </div>
         <div className="nastavenie-informacii">
           <Form>
             Osobné údaje <br />
@@ -41,38 +62,16 @@ export default class Prihlasovanie extends React.Component {
               <Label for="name" sm={2}>
                 Meno:
               </Label>
-              <Col sm={3}>
-                <Input type="name" name="name" id="name" placeholder="Meno" />
-              </Col>
             </FormGroup>
             <FormGroup row>
               <Label for="surname" sm={2}>
                 Priezvisko:
               </Label>
-              <Col sm={3}>
-                <Input type="name" name="surname" id="surname" placeholder="Priezvisko" />
-              </Col>
             </FormGroup>
             <FormGroup row>
-              <Label for="exampleEmail" sm={2}>
+              <Label for="email" sm={2}>
                 Email:
               </Label>
-              <Col sm={3}>
-                <Input type="email" name="email" id="examplePassword" placeholder="Email" />
-              </Col>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="exampleNumber" sm={2}>
-                Telefónne číslo:
-              </Label>
-              <Col sm={3}>
-                <Input
-                  type="number"
-                  name="number"
-                  id="exampleNumber"
-                  placeholder="Telefónne číslo"
-                />
-              </Col>
             </FormGroup>
             <br />Zmena hesla
             <FormGroup row>
@@ -114,29 +113,26 @@ export default class Prihlasovanie extends React.Component {
                 />
               </Col>
             </FormGroup>
-            <Button color="success">Uložiť</Button>
-            {'  '}
-            <Button color="danger"> Zrušiť</Button>
-            {'  '}
+            <ButtonGroup>
+              <Button
+                color="success"
+                className="nastav"
+                onClick={() => {
+                  this.props.history.push('hlavna')
+                }}
+              >
+                Uložiť
+              </Button>
+              <Button
+                color="danger"
+                onClick={() => {
+                  this.props.history.push('hlavna')
+                }}
+              >
+                Zrušiť
+              </Button>
+            </ButtonGroup>
           </Form>
-        </div>
-        <div className="nastavenie-fotky">
-          <input
-            style={{display: 'none'}}
-            type="file"
-            onChange={this.fileSelectedHandler}
-            ref={(fileInput) => (this.fileInput = fileInput)}
-          />
-
-          <img src={Pouzivatelfotka} className="pouzivatelfotka" />
-          <ButtonGroup>
-            <Button color="primary" onClick={() => this.fileInput.click()}>
-              PickFile
-            </Button>
-            <Button color="success" onClick={this.fileUploadHandler}>
-              Upload
-            </Button>
-          </ButtonGroup>
         </div>
       </div>
     )

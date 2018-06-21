@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, Form, FormGroup, Label, Input, Col} from 'reactstrap'
 import {connect} from 'react-redux'
+import Pozadie from '../obrazky/pozadie.jpg'
 import {updateValue} from '../sharedActions'
 import {addBoarder} from './actions'
 import './Nastavenie_profilu_stravnik.css'
@@ -9,9 +10,9 @@ class ProfilStravnik extends React.Component {
   render() {
     const {name, surname, diet} = this.props.boarder
     return (
-      <div className="nastavenie-informacii">
+      <div className="nastavenieInformaciiStravnik">
         <Form>
-          Osobné údaje <br />
+          <h3>Osobné údaje </h3>
           <FormGroup row>
             <Label for="name" sm={2}>
               Meno:
@@ -52,7 +53,7 @@ class ProfilStravnik extends React.Component {
           </FormGroup>
           <FormGroup row>
             <Label for="text" sm={2}>
-              Diet:
+              Diéta:
             </Label>
             <Col sm={3}>
               <Input
@@ -65,7 +66,7 @@ class ProfilStravnik extends React.Component {
                     'Change boarder diet'
                   )
                 }
-                placeholder="Dieta"
+                placeholder="Diéta"
               />
             </Col>
           </FormGroup>

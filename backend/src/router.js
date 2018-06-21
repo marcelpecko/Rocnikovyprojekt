@@ -31,7 +31,7 @@ const users = []
 const boarders = {}
 
 const sampleRequest = (req, res, next) => {
-  res.json([{s: 'Som king'}, {s: 'Som king'}, {s: 'Som king'}])
+  res.json('tu nic nie je')
 }
 
 const registerUser = (req, res) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap'
+import {Button, Form, FormGroup, Label, Input, ButtonGroup} from 'reactstrap'
 import Pozadie from '../obrazky/pozadie.jpg'
 import {connect} from 'react-redux'
 import {updateValue} from '../sharedActions'
@@ -25,7 +25,7 @@ class Registracia extends React.Component {
         >
           <div className="toggle">
             <div className="toggle-header">
-              <h3> Registrácia </h3>
+              <h4> Registrácia </h4>
               <div className="toggle-registracia">
                 <FormGroup>
                   <Label for="registracia_meno" className="mr-sm-2">
@@ -108,7 +108,7 @@ class Registracia extends React.Component {
                   <AvField
                     type="password"
                     name={passwordRepeatName}
-                    placeholder="Heslo"
+                    placeholder="Zopakuj heslo"
                     value={this.props.passwordRepeat}
                     onChange={(event) =>
                       this.props.updateValue(
@@ -119,11 +119,21 @@ class Registracia extends React.Component {
                     }
                     validate={{
                       ...passwordValidation,
-                      match: {value: passwordName, errorMessage: 'HESLO'},
+                      match: {value: passwordName, errorMessage: 'Heslá sa nezhodujú!!'},
                     }}
                   />
                 </FormGroup>
-                <Button color="primary">Registrovať</Button>
+                <ButtonGroup>
+                  <Button color="primary">Registrovať</Button>
+                  <Button
+                    color="warning"
+                    onClick={() => {
+                      this.props.history.push('hlavna')
+                    }}
+                  >
+                    Späť
+                  </Button>
+                </ButtonGroup>
               </div>
             </div>
           </div>
