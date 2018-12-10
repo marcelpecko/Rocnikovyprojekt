@@ -1,1 +1,3 @@
-SELECT * from playground
+SELECT * FROM users;
+SELECT * FROM boarders;
+SELECT * FROM menus;

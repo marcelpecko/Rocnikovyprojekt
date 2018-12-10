@@ -1,5 +1,3 @@
-import {parse, stringify} from 'query-string'
-
 const POST = 'POST'
 const GET = 'GET'
 const JSON_HEADER = new Headers({
@@ -14,6 +12,7 @@ class Api {
   registerUser(registerInfo) {
     this.request('/register', {
       method: POST,
+      // TODO: do not send passwordRepeat
       body: JSON.stringify(registerInfo),
       headers: JSON_HEADER,
     })

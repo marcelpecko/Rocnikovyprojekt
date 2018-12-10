@@ -3,9 +3,14 @@ import {Button, Badge, Label, ButtonGroup, FormGroup} from 'reactstrap'
 import UserIcon from 'react-icons/lib/fa/user'
 import {connect} from 'react-redux'
 import Stravnici from './Stravnici'
+import {loadBoarders as _loadBoarders} from '../sharedActions'
 import './Hlavna_stranka.css'
 
 class HlavnaStranka extends React.Component {
+  componentDidMount() {
+    if (this.props.user) this.props.loadBoarders(this.props.user)
+  }
+
   render() {
     if (!this.props.user) {
       this.props.history.push('/')
@@ -66,7 +71,7 @@ class HlavnaStranka extends React.Component {
             <div className="upozornenia-text">
               <br />
               Nový jedálny lístok je už zverejnený
-              <br /> Jedáleň bude dňa 19.4.2017 zatvorená z dôvodu riaditeľského volna.
+              <br /> Jedáleň bude dňa 30.10.2018 zatvorená z dôvodu štátneho sviatku.
               <br />
             </div>
           </div>
@@ -76,6 +81,9 @@ class HlavnaStranka extends React.Component {
   }
 }
 
-export default connect((state) => ({
-  user: state.user,
-}))(HlavnaStranka)
+export default connect(
+  (state) => ({
+    user: state.user,
+  }),
+  {loadBoarders: _loadBoarders}
+)(HlavnaStranka)

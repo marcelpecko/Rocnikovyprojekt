@@ -6,6 +6,7 @@ import Registracia from '../Registracia'
 import Stravnik from '../Nastavenie_profilu_stravnik'
 import Pouzivatel from '../Nastavenie_profilu_pouzivatel'
 import Vyber from '../Vyber_z_listka'
+import Jedalen from '../Jedalen_uvod'
 
 const App = () => (
   <div>
@@ -15,6 +16,7 @@ const App = () => (
     <Route path="/stravnik" component={Stravnik} />
     <Route path="/pouzivatel" component={Pouzivatel} />
     <Route path="/vyber" component={Vyber} />
+    <Route path="/jedalen" component={Jedalen} />
   </div>
 )
 
