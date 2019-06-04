@@ -17,6 +17,7 @@ const state = {
     diet: '',
   },
   boarders: [],
+  menu: [], // array of pairs (2 element array)
 }
 
 export default () => state

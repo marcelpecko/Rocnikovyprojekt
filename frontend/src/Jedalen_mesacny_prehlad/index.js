@@ -1,21 +1,20 @@
 import React from 'react'
 import {Table} from 'reactstrap'
 import {connect} from 'react-redux'
-import './Jedalen_mazanie_pouzivatelov.css'
+import './Jedalen_mesacny_prehlad.css'
 
-class MazaniePouzivatelov extends React.Component {
+class MesacnyPrehlad extends React.Component {
   render() {
     return (
       <dir>
         <Table className="table">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Surame</th>
-              <th>Email</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Dieťa</th>
+              <th>Mesiac</th>
+              <th>Týždeň</th>
+              <th>Deň</th>
+              <th>Obed</th>
             </tr>
           </thead>
         </Table>
@@ -26,4 +25,4 @@ class MazaniePouzivatelov extends React.Component {
 
 export default connect((state) => ({
   boarders: state.boarders,
-}))(MazaniePouzivatelov)
+}))(MesacnyPrehlad)

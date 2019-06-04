@@ -1,25 +1,22 @@
 import React from 'react'
 import {Button, Label, Input, Table, ButtonGroup} from 'reactstrap'
-import './Vyber_z_listka.css'
-import Pozadie from '../obrazky/pozadie.jpg'
+import './zobrazenie.css'
+import Pozadie from '../../obrazky/pozadie.jpg'
 import {connect} from 'react-redux'
 
 const DAYS = ['Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok']
 
-class VyberZListka extends React.Component {
+class Zobrazenie extends React.Component {
   render() {
     if (this.props.menu.length === 0) return 'Nie je zverejnené menu na aktuálny týždeň!'
     return (
       <div>
         <img src={Pozadie} className="pozadie" />
-        <div className="tabulkaJedlo">
-          <div className="dieta">
-            <h3> Stravník: </h3>
-          </div>
+        <div className="jtabulkaJedlo">
           <Table>
-            <thead>
+            <thead className="jvrch">
               <tr>
-                <th className="tabulkadni">Týždeň:</th>
+                <th className="jtabulkadni">Týždeň:</th>
                 <th> {this.props.menu[5][0]}</th>
                 <th />
                 <th>Odhlasujem</th>
@@ -28,7 +25,7 @@ class VyberZListka extends React.Component {
             <tbody>
               {DAYS.map((day, ind) => (
                 <tr key={day}>
-                  <th className="tabulkadni" scope="row">
+                  <th className="jtabulkadni" scope="row">
                     {day}
                   </th>
                   <td>
@@ -53,9 +50,13 @@ class VyberZListka extends React.Component {
               ))}
             </tbody>{' '}
           </Table>
-          <ButtonGroup className="vyberzlistkabuttony">
-            <Button color="success">Uložiť</Button>
-            <Button color="primary">Odhlasit na celý týždeň</Button>
+          <ButtonGroup className="jvyberzlistkabuttony">
+            <Button color="success" href="nastavenie_listka">
+              Nahrať iný jedálny lístok
+            </Button>
+            <Button color="primary" href="jedalen">
+              Späť na hlavnú stránku
+            </Button>
           </ButtonGroup>
         </div>
       </div>
@@ -63,4 +64,4 @@ class VyberZListka extends React.Component {
   }
 }
 
-export default connect((state) => ({menu: state.menu}))(VyberZListka)
+export default connect((state) => ({menu: state.menu}))(Zobrazenie)

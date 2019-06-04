@@ -48,7 +48,6 @@ class HlavnaStranka extends React.Component {
             >
               Nastav profil
             </Button>
-
             <Button
               color="warning"
               onClick={() => {

@@ -1,9 +1,9 @@
 import React from 'react'
 import {Table} from 'reactstrap'
 import {connect} from 'react-redux'
-import './Jedalen_mazanie_pouzivatelov.css'
+import './Jedalen_mazanie_stravnikov.css'
 
-class MazaniePouzivatelov extends React.Component {
+class MazanieStravnikov extends React.Component {
   render() {
     return (
       <dir>
@@ -26,4 +26,4 @@ class MazaniePouzivatelov extends React.Component {
 
 export default connect((state) => ({
   boarders: state.boarders,
-}))(MazaniePouzivatelov)
+}))(MazanieStravnikov)

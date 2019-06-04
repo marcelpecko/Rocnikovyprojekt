@@ -1,6 +1,6 @@
 .nastavenie-profilu {
   width: 100%;
-  height: 650px;
+  height: 100%;
   background-color: rgb(94, 138, 173);
   padding: 20px;  
 }
@@ -12,22 +12,4 @@
   background-color: rgb(103, 184, 38);
   font-weight: bold;
   float: right;
-}
-
-.pouzivatelfotka {
-  width: 150px;
-  height: 150px;
-  margin: 23px;
-}
-
-.nastavenie-fotky {
-  width: 17%;
-  padding: 10px;
-  background-color: rgb(138, 31, 27);
-  font-weight: bold;
-  float: left;
-
-  button {
-    width: 100px;
-  }
 }

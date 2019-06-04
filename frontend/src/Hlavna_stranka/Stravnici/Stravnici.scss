@@ -1,6 +1,24 @@
 .zaklad-stravnici {
     width: 100%;
-    height: 200px;
+    height: 300px;
     overflow: auto;
-    //background-color: rgb(255, 0, 0);
+
+  }
+
+  .stravnikInfoMeno{   
+    font-weight: bold;
+  }
+
+  .jedenstravnik{   
+    border: 2px solid rgb(110, 99, 99);
+  border-radius: 12px;
+  margin:2px;
+  padding: 2px;
+  }
+
+  .stravnikbutton{   
+    float: right;
+    height: 35px;
+    margin-top: -17px;
+    margin-right: 5px;
   }

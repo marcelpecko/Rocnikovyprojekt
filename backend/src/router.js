@@ -1,4 +1,6 @@
 const express = require('express')
+const fs = require('fs')
+const path = require('path')
 const router = express.Router()
 
 // To start database run:
@@ -83,10 +85,32 @@ const getBoarders = async (req, res) => {
   res.status(HttpStatusCodes.OK).json(boarders)
 }
 
+const setMenu = async (req, res) => {
+  fs.writeFile(path.join(__dirname, '..', 'data', 'menu.txt'), JSON.stringify(req.body), (err) => {
+    if (err) {
+      console.error(err)
+    } else {
+      res.status(HttpStatusCodes.OK).send()
+    }
+  })
+}
+
+const getMenu = async (req, res) => {
+  fs.readFile(path.join(__dirname, '..', 'data', 'menu.txt'), (err, data) => {
+    if (err) {
+      console.error(err)
+    } else {
+      res.status(HttpStatusCodes.OK).json(JSON.parse(data.toString()))
+    }
+  })
+}
+
 router.get('/', sampleRequest)
 router.post('/register', registerUser)
 router.get('/users', getUsers)
 router.post('/boarder', addBoarder)
 router.get('/boarders', getBoarders)
+router.get('/menu', getMenu)
+router.post('/menu', setMenu)
 
 module.exports = router

@@ -1,10 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {Button, Form, FormGroup, ButtonGroup, Label, Input, Col} from 'reactstrap'
 import axios from 'axios'
-import {connect} from 'react-redux'
-import Pouzivatelfotka from 'react-icons/lib/fa/user'
-import {AvForm, AvField} from 'availity-reactstrap-validation'
-import {passwordValidation} from '../Registracia/validations'
+import Pozadie from '../obrazky/pozadie.jpg'
 import './Nastavenie_profilu_pouzivatel.css'
 
 export default class Prihlasovanie extends React.Component {
@@ -37,24 +34,7 @@ export default class Prihlasovanie extends React.Component {
   render() {
     return (
       <div className="nastavenie-profilu">
-        <div className="nastavenie-fotky">
-          <input
-            style={{display: 'none'}}
-            type="file"
-            onChange={this.fileSelectedHandler}
-            ref={(fileInput) => (this.fileInput = fileInput)}
-          />
-
-          <img src={Pouzivatelfotka} className="pouzivatelfotka" />
-          <ButtonGroup>
-            <Button color="primary" onClick={() => this.fileInput.click()}>
-              PickFile
-            </Button>
-            <Button color="success" onClick={this.fileUploadHandler}>
-              Upload
-            </Button>
-          </ButtonGroup>
-        </div>
+        <img src={Pozadie} className="pozadie" alt="pozadie" />
         <div className="nastavenie-informacii">
           <Form>
             Osobné údaje <br />

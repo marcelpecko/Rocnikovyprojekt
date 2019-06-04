@@ -37,6 +37,21 @@ class Api {
     }).then((res) => res.json())
   }
 
+  setMenu(menu) {
+    this.request('/menu', {
+      method: POST,
+      body: JSON.stringify(menu),
+      headers: JSON_HEADER,
+    })
+  }
+
+  getMenu() {
+    return this.request('/menu', {
+      method: GET,
+      headers: JSON_HEADER,
+    }).then((res) => res.json())
+  }
+
   request(url, options) {
     this.logger.log(`Request: ${url}`, options)
     return fetch(url, options)

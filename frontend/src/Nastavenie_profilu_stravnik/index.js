@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Form, FormGroup, Label, Input, Col} from 'reactstrap'
+import {Button, Form, FormGroup, ButtonGroup, Label, Input, Col} from 'reactstrap'
 import {connect} from 'react-redux'
 import Pozadie from '../obrazky/pozadie.jpg'
 import {updateValue} from '../sharedActions'
@@ -10,78 +10,98 @@ class ProfilStravnik extends React.Component {
   render() {
     const {name, surname, diet} = this.props.boarder
     return (
-      <div className="nastavenieInformaciiStravnik">
-        <Form>
-          <h3>Osobné údaje </h3>
-          <FormGroup row>
-            <Label for="name" sm={2}>
-              Meno:
-            </Label>
-            <Col sm={3}>
-              <Input
-                type="name"
-                value={name}
-                onChange={(event) =>
-                  this.props.updateValue(
-                    ['boarder', 'name'],
-                    event.target.value,
-                    'Change boarder name'
-                  )
-                }
-                placeholder="Meno"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="examplePassword" sm={2}>
-              Priezvisko:
-            </Label>
-            <Col sm={3}>
-              <Input
-                type="surname"
-                value={surname}
-                onChange={(event) =>
-                  this.props.updateValue(
-                    ['boarder', 'surname'],
-                    event.target.value,
-                    'Change boarder surname'
-                  )
-                }
-                placeholder="Priezvisko"
-              />
-            </Col>
-          </FormGroup>
-          <FormGroup row>
-            <Label for="text" sm={2}>
-              Diéta:
-            </Label>
-            <Col sm={3}>
-              <Input
-                type="text"
-                value={diet}
-                onChange={(event) =>
-                  this.props.updateValue(
-                    ['boarder', 'diet'],
-                    event.target.value,
-                    'Change boarder diet'
-                  )
-                }
-                placeholder="Diéta"
-              />
-            </Col>
-          </FormGroup>
-          <Button
-            color="success"
-            onClick={(e) => {
-              this.props.addBoarder()
-              this.props.history.push('hlavna')
-            }}
-          >
-            Uložiť
-          </Button>
-          <Button color="danger" onClick={(e) => this.props.history.push('hlavna')}>
-            Zrušiť
-          </Button>
+      <div>
+        <img src={Pozadie} className="pozadiestravnik" alt="pozadie" />
+        <Form className="nastavenie">
+          <div className="vnutro">
+            <span className="char1">O</span>
+            <span className="char2">s</span>
+            <span className="char3">o</span>
+            <span className="char4">b</span>
+            <span className="char5">n</span>
+            <span className="char6">é</span>
+            <span className="char7">ú</span>
+            <span className="char8">d</span>
+            <span className="char9">a</span>
+            <span className="char10">j</span>
+            <span className="char11">e</span>
+            <FormGroup row>
+              <Label for="name" sm={2}>
+                Meno:
+              </Label>
+              <Col sm={3}>
+                <Input
+                  type="name"
+                  value={name}
+                  onChange={(event) =>
+                    this.props.updateValue(
+                      ['boarder', 'name'],
+                      event.target.value,
+                      'Change boarder name'
+                    )
+                  }
+                  placeholder="Meno"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="examplePassword" sm={2}>
+                Priezvisko:
+              </Label>
+              <Col sm={3}>
+                <Input
+                  type="surname"
+                  value={surname}
+                  onChange={(event) =>
+                    this.props.updateValue(
+                      ['boarder', 'surname'],
+                      event.target.value,
+                      'Change boarder surname'
+                    )
+                  }
+                  placeholder="Priezvisko"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup row>
+              <Label for="text" sm={2}>
+                Diéta:
+              </Label>
+              <Col sm={3}>
+                <Input
+                  type="select"
+                  value={diet}
+                  onChange={(event) =>
+                    this.props.updateValue(
+                      ['boarder', 'diet'],
+                      event.target.value,
+                      'Change boarder diet'
+                    )
+                  }
+                >
+                  <option>Žiadna</option>
+                  <option>Bezlepková</option>
+                  <option>Bezlaktózová</option>
+                  <option>Diabetická</option>
+                  <option>Iná</option>
+                </Input>
+              </Col>
+            </FormGroup>
+            <ButtonGroup className="stravnikbuttony">
+              <Button
+                color="success"
+                onClick={(e) => {
+                  this.props.addBoarder()
+                  this.props.history.push('hlavna')
+                }}
+              >
+                Uložiť
+              </Button>
+              <Button color="danger" href="hlavna">
+                Zrušiť
+              </Button>
+            </ButtonGroup>
+          </div>
         </Form>
       </div>
     )
