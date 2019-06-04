@@ -1,6 +1,7 @@
 import React from 'react'
 import {Button, ButtonGroup} from 'reactstrap'
 import {connect} from 'react-redux'
+import {updateValue} from '../../sharedActions'
 import './Stravnici.css'
 
 class Stravnici extends React.Component {
@@ -28,6 +29,7 @@ class Stravnici extends React.Component {
                 <Button
                   color="info"
                   onClick={() => {
+                    this.props.updateValue(['currentBoarderId'], b.id, 'Set current boarder id')
                     this.props.history.push('vyber')
                   }}
                 >
@@ -42,6 +44,9 @@ class Stravnici extends React.Component {
   }
 }
 
-export default connect((state) => ({
-  boarders: state.boarders,
-}))(Stravnici)
+export default connect(
+  (state) => ({
+    boarders: state.boarders,
+  }),
+  {updateValue}
+)(Stravnici)

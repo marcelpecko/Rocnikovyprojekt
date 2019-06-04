@@ -1,8 +1,9 @@
 import React from 'react'
-import {Button, Form, FormGroup, Label, Input, Table, ImageUploader, ButtonGroup} from 'reactstrap'
+import {Button, ButtonGroup} from 'reactstrap'
 import './Jedalen_nastavenie_listka.css'
 import Pozadie from '../obrazky/pozadie.jpg'
 import {setMenu} from './actions'
+import {updateValue} from '../sharedActions'
 import {connect} from 'react-redux'
 
 class NastavenieListka extends React.Component {
@@ -16,10 +17,14 @@ class NastavenieListka extends React.Component {
       menu.push([input.substring(inds[0], inds[1]), input.substring(inds[1], inds[2])])
       input = input.substr(inds[2] + 1)
     }
+
     input = this.state.area
     const inds2 = [input.indexOf('od'), input.indexOf('Pondelok')]
-    menu.push([input.substring(inds2[0], inds2[1]), 0])
-    this.props.setMenu(menu)
+    const week = input.substring(inds2[0], inds2[1])
+    this.props.updateValue(['week'], week, 'Set week in state')
+
+    this.props.setMenu(menu, week)
+
     this.props.history.push('/zobrazenie')
   }
 
@@ -50,5 +55,5 @@ class NastavenieListka extends React.Component {
 
 export default connect(
   null,
-  {setMenu}
+  {setMenu, updateValue}
 )(NastavenieListka)

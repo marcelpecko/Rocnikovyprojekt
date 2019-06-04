@@ -8,8 +8,9 @@ export const loginUser = () => async (dispatch, getState, {api, logger, history}
     (user) => user.email === loginState.email && user.password === loginState.password
   )
 
-  const menu = await api.getMenu()
+  const {menu, week} = await api.getMenu()
   dispatch(updateValue(['menu'], menu, 'Set menu in state'))
+  dispatch(updateValue(['week'], week, 'Set week in state'))
 
   if (user) {
     if (user.email === 'admin@admin.sk') {

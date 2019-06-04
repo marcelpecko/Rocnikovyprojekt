@@ -37,10 +37,17 @@ class Api {
     }).then((res) => res.json())
   }
 
-  setMenu(menu) {
+  getAllBoarders() {
+    return this.request('/boarders', {
+      method: GET,
+      headers: JSON_HEADER,
+    }).then((res) => res.json())
+  }
+
+  setMenu(menu, week) {
     this.request('/menu', {
       method: POST,
-      body: JSON.stringify(menu),
+      body: JSON.stringify({menu, week}),
       headers: JSON_HEADER,
     })
   }
@@ -52,10 +59,30 @@ class Api {
     }).then((res) => res.json())
   }
 
+  saveMenuChoices(boarderId, menuChoices, week) {
+    return this.request('/menuChoices', {
+      method: POST,
+      body: JSON.stringify({boarderId, menuChoices, week}),
+      headers: JSON_HEADER,
+    })
+  }
+
+  getMenuChoices() {
+    return this.request('/menuChoices', {
+      method: GET,
+      headers: JSON_HEADER,
+    }).then((res) => res.json())
+  }
+
   request(url, options) {
     this.logger.log(`Request: ${url}`, options)
     return fetch(url, options)
   }
 }
 
-export default Api
+let api
+export const getApi = () => api
+export default (logger) => {
+  api = new Api(logger)
+  return api
+}

@@ -3,7 +3,7 @@ import {createStore, applyMiddleware} from 'redux'
 import {createLogger} from 'redux-logger'
 import rootReducer from './rootReducer'
 import getInitialState from './initialState'
-import Api from './Api'
+import configure from './Api'
 import {history} from './history'
 
 export default () => {
@@ -14,7 +14,7 @@ export default () => {
     collapsed: true,
   })
 
-  const middlewares = [thunk.withExtraArgument({logger, api: new Api(logger), history})]
+  const middlewares = [thunk.withExtraArgument({logger, api: configure(logger), history})]
   if (process.env.NODE_ENV === 'development') {
     middlewares.push(loggerMiddleware)
   }

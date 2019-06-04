@@ -7,6 +7,12 @@ import {updateValue} from '../sharedActions'
 import './Prihlasenie.css'
 
 class Prihlasovanie extends React.Component {
+  loginOnEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.props.loginUser()
+    }
+  }
+
   render() {
     return (
       <div>
@@ -30,6 +36,7 @@ class Prihlasovanie extends React.Component {
                   )
                 }
                 placeholder="Email"
+                onKeyDown={this.loginOnEnter}
               />
             </FormGroup>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
@@ -47,6 +54,7 @@ class Prihlasovanie extends React.Component {
                   )
                 }
                 placeholder="Heslo"
+                onKeyDown={this.loginOnEnter}
               />
             </FormGroup>
             <ButtonGroup>

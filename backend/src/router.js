@@ -80,9 +80,14 @@ const removeBoarder = async (req, res) => {
 
 const getBoarders = async (req, res) => {
   const {email} = req.query
-  const userId = await getUserIdFromEmail(email)
-  const boarders = await db.any('SELECT * FROM boarders WHERE user_id = $1', userId)
-  res.status(HttpStatusCodes.OK).json(boarders)
+  if (email) {
+    const userId = await getUserIdFromEmail(email)
+    const boarders = await db.any('SELECT * FROM boarders WHERE user_id = $1', userId)
+    res.status(HttpStatusCodes.OK).json(boarders)
+  } else {
+    const boarders = await db.any('SELECT * FROM boarders')
+    res.status(HttpStatusCodes.OK).json(boarders)
+  }
 }
 
 const setMenu = async (req, res) => {
@@ -105,6 +110,21 @@ const getMenu = async (req, res) => {
   })
 }
 
+const saveMenuChoices = async (req, res) => {
+  const {menuChoices, boarderId, week} = req.body
+  await db.none('INSERT INTO menus (boarder_id, week, choices) VALUES ($1, $2, $3)', [
+    boarderId,
+    week,
+    menuChoices,
+  ])
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const getMenuChoices = async (req, res) => {
+  const menuChoices = await db.any('SELECT * FROM menus')
+  res.status(HttpStatusCodes.OK).json(menuChoices)
+}
+
 router.get('/', sampleRequest)
 router.post('/register', registerUser)
 router.get('/users', getUsers)
@@ -112,5 +132,7 @@ router.post('/boarder', addBoarder)
 router.get('/boarders', getBoarders)
 router.get('/menu', getMenu)
 router.post('/menu', setMenu)
+router.post('/menuChoices', saveMenuChoices)
+router.get('/menuChoices', getMenuChoices)
 
 module.exports = router

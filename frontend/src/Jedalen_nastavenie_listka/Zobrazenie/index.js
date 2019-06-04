@@ -17,7 +17,7 @@ class Zobrazenie extends React.Component {
             <thead className="jvrch">
               <tr>
                 <th className="jtabulkadni">Týždeň:</th>
-                <th> {this.props.menu[5][0]}</th>
+                <th> {this.props.week}</th>
                 <th />
                 <th>Odhlasujem</th>
               </tr>
