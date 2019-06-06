@@ -3,20 +3,27 @@ import {Button, Badge, Label, ButtonGroup, FormGroup} from 'reactstrap'
 import UserIcon from 'react-icons/lib/fa/user'
 import {connect} from 'react-redux'
 import Stravnici from './Stravnici'
-import {loadBoarders as _loadBoarders} from '../sharedActions'
+import {getApi} from '../Api'
+import {loadBoarders as _loadBoarders, updateValue} from '../sharedActions'
 import './Hlavna_stranka.css'
 
 class HlavnaStranka extends React.Component {
-  componentDidMount() {
-    if (this.props.user) this.props.loadBoarders(this.props.user)
+  async componentDidMount() {
+    const {user, updateValue, loadBoarders} = this.props
+
+    if (user) loadBoarders(user)
+    updateValue(['notice'], await getApi().getNotice(), 'Set notice value')
   }
 
   render() {
+    const {notice} = this.props
+
     if (!this.props.user) {
       this.props.history.push('/')
       return null
     }
     const {name, surname, email} = this.props.user
+
     return (
       <div className="flex">
         <div className="zaklad">
@@ -67,12 +74,7 @@ class HlavnaStranka extends React.Component {
             <h2>
               Upozornenia: <Badge color="danger">New</Badge>
             </h2>
-            <div className="upozornenia-text">
-              <br />
-              Nový jedálny lístok je už zverejnený
-              <br /> Jedáleň bude dňa 30.10.2018 zatvorená z dôvodu štátneho sviatku.
-              <br />
-            </div>
+            <div className="upozornenia-text">{notice}</div>
           </div>
         </div>
       </div>
@@ -83,6 +85,7 @@ class HlavnaStranka extends React.Component {
 export default connect(
   (state) => ({
     user: state.user,
+    notice: state.notice,
   }),
-  {loadBoarders: _loadBoarders}
+  {loadBoarders: _loadBoarders, updateValue}
 )(HlavnaStranka)

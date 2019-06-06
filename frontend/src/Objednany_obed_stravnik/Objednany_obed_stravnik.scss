@@ -1,0 +1,14 @@
+.ObjednaneMenuStravnik {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 590px;
+  padding: 5px;
+  background-color: white;
+  border-radius: 25px;
+  margin: 20px 5%;
+}
+
+.TabulkaDniObjednaneMenu{
+  width: 110px;    
+}

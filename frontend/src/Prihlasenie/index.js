@@ -4,6 +4,7 @@ import Pozadie from '../obrazky/pozadie.jpg'
 import {loginUser} from './actions'
 import {connect} from 'react-redux'
 import {updateValue} from '../sharedActions'
+import {nonEmptyField} from './validations'
 import './Prihlasenie.css'
 
 class Prihlasovanie extends React.Component {
@@ -20,9 +21,21 @@ class Prihlasovanie extends React.Component {
         <Form className="mojForm" style={{position: 'relative'}}>
           <div className="prihlasenie">
             {' '}
-            <h3>Prihlasovanie </h3>
+            <h3>
+              <span className="chara1">P</span>
+              <span className="chara2">r</span>
+              <span className="chara3">i</span>
+              <span className="chara4">h</span>
+              <span className="chara5">l</span>
+              <span className="chara6">á</span>
+              <span className="chara7">s</span>
+              <span className="chara8">e</span>
+              <span className="chara9">n</span>
+              <span className="chara10">i</span>
+              <span className="chara11">e</span>
+            </h3>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label for="email" className="mr-sm-2">
+              <Label for="email" className="prihlasenielabel">
                 Email
               </Label>
               <Input
@@ -37,10 +50,11 @@ class Prihlasovanie extends React.Component {
                 }
                 placeholder="Email"
                 onKeyDown={this.loginOnEnter}
+                validate={nonEmptyField}
               />
             </FormGroup>
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label for="heslo" className="mr-sm-2">
+              <Label for="heslo" className="prihlasenielabel">
                 Heslo
               </Label>
               <Input

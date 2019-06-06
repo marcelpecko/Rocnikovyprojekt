@@ -21,6 +21,7 @@ class Registracia extends React.Component {
           style={{position: 'relative'}}
           onValidSubmit={(e) => {
             this.props.registerUser()
+            this.props.history.push('hlavna')
           }}
         >
           <div className="toggle">
@@ -123,7 +124,7 @@ class Registracia extends React.Component {
                     }}
                   />
                 </FormGroup>
-                <ButtonGroup>
+                <ButtonGroup className="btnreg">
                   <Button color="primary">Registrovať</Button>
                   <Button
                     color="warning"

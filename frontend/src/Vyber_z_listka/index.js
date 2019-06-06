@@ -1,9 +1,10 @@
 import React from 'react'
-import {Button, Label, Input, Table, ButtonGroup} from 'reactstrap'
+import {Button, Label, Input, Table, ButtonGroup, Modal, ModalHeader, ModalFooter} from 'reactstrap'
 import './Vyber_z_listka.css'
 import Pozadie from '../obrazky/pozadie.jpg'
 import {connect} from 'react-redux'
 import {saveMenuChoices} from './actions'
+import {keyBy} from 'lodash'
 
 const DAYS = ['Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok']
 
@@ -17,13 +18,21 @@ class VyberZListka extends React.Component {
   }
 
   render() {
+    const {boarders, currentBoarderId} = this.props
+    if (!boarders || !currentBoarderId) {
+      this.props.history.push('/hlavna')
+      return null
+    }
+
+    const boarder = keyBy(boarders, 'id')[currentBoarderId]
+
     if (this.props.menu.length === 0) return 'Nie je zverejnené menu na aktuálny týždeň!'
     return (
       <div>
         <img src={Pozadie} className="pozadie" />
         <div className="tabulkaJedlo">
           <div className="dieta">
-            <h3> Stravník: </h3>
+            <h3> Stravník: {`${boarder.name} ${boarder.surname}`}</h3>
           </div>
           <Table>
             <thead>
@@ -74,6 +83,21 @@ class VyberZListka extends React.Component {
               ))}
             </tbody>{' '}
           </Table>
+
+          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader toggle={this.toggle}>Úspešne objednané menu</ModalHeader>
+            <ModalFooter>
+              <Button
+                color="success"
+                onClick={() => {
+                  this.props.history.push('hlavna')
+                }}
+              >
+                Späť na hlavnú stránku
+              </Button>
+            </ModalFooter>
+          </Modal>
+
           <ButtonGroup className="vyberzlistkabuttony">
             <Button
               color="success"
@@ -97,6 +121,11 @@ class VyberZListka extends React.Component {
 }
 
 export default connect(
-  (state) => ({menu: state.menu}),
+  (state) => ({
+    menu: state.menu,
+    week: state.week,
+    currentBoarderId: state.currentBoarderId,
+    boarders: state.boarders,
+  }),
   {saveMenuChoices}
 )(VyberZListka)

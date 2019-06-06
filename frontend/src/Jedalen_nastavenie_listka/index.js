@@ -37,13 +37,13 @@ class NastavenieListka extends React.Component {
           value={this.state.area}
           onChange={(e) => this.setState({area: e.target.value})}
         >
-          <h3> Aktuálny týždeň:</h3>
+          <h3> Aktuálne nahratý týždeň {this.props.week}</h3>
           <textarea className="jedalennastavenielistkaarea" />
           <ButtonGroup className="buttonyjedalenlistok">
             <Button color="success" onClick={this.updateMenu}>
               Aktualizovať jedálny lístok
             </Button>
-            <Button color="primary" href="jedalen">
+            <Button color="primary" onClick={() => this.props.history.push('/jedalen')}>
               Späť na hlavnú stránku
             </Button>
           </ButtonGroup>
@@ -54,6 +54,6 @@ class NastavenieListka extends React.Component {
 }
 
 export default connect(
-  null,
+  (state) => ({week: state.week}),
   {setMenu, updateValue}
 )(NastavenieListka)

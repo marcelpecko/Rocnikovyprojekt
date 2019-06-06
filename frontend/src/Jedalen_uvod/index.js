@@ -1,7 +1,6 @@
 import React from 'react'
 import {
   Button,
-  ButtonGroup,
   ListGroup,
   ListGroupItem,
   Modal,
@@ -12,32 +11,41 @@ import {
 } from 'reactstrap'
 import Poz from '../obrazky/pozadie.jpg'
 import {connect} from 'react-redux'
+import {updateValue} from '../sharedActions'
+import {getApi} from '../Api'
 import './Jedalen_uvod.css'
 
 const DAYS = ['Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok']
 
 class Jedalen extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      modal: false,
-    }
-
-    this.toggle = this.toggle.bind(this)
+  state = {
+    modal: false,
+    menus: [],
   }
 
-  toggle() {
+  toggle = async () => {
+    const menus = await getApi().getMenuChoices()
     this.setState((prevState) => ({
       modal: !prevState.modal,
+      menus,
     }))
+
+    console.log(this.state)
+  }
+
+  async componentDidMount() {
+    this.props.updateValue(['notice'], await getApi().getNotice(), 'Set notice value')
   }
 
   render() {
+    const {notice, updateValue, week} = this.props
+    if (notice === undefined) return null
+
     return (
-      <div className="aa">
+      <div>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-          <ModalHeader className="skuska" toggle={this.toggle}>
-            Počet objedávok na týždeň
+          <ModalHeader className="jedalennasledtyzdenokno" toggle={this.toggle}>
+            Počet objedávok na týždeň <br /> {week}
           </ModalHeader>
           <ModalFooter>
             <Table>
@@ -54,8 +62,20 @@ class Jedalen extends React.Component {
                     <th className="tabulkadni" scope="row">
                       {day}
                     </th>
-                    <td>1</td>
-                    <td>2</td>
+                    <td>
+                      {
+                        this.state.menus.filter(
+                          (menu) => menu.week === week && menu.choices[ind] === '1'
+                        ).length
+                      }
+                    </td>
+                    <td>
+                      {
+                        this.state.menus.filter(
+                          (menu) => menu.week === week && menu.choices[ind] === '2'
+                        ).length
+                      }
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -63,19 +83,37 @@ class Jedalen extends React.Component {
           </ModalFooter>
         </Modal>
         <ListGroup className="bb">
-          <ListGroupItem tag="a" href="#" onClick={this.toggle}>
+          <ListGroupItem className="navigationitem" onClick={this.toggle}>
             Počet objednávok na nasledujúci týždeň
           </ListGroupItem>
-          <ListGroupItem tag="a" href="nastavenie_listka">
+          <ListGroupItem
+            className="navigationitem"
+            onClick={() => this.props.history.push('/nastavenie_listka')}
+          >
             Nastavenie jedálneho lístka
           </ListGroupItem>
-          <ListGroupItem tag="a" href="mesacny_prehlad_jedalen">
+          <ListGroupItem
+            className="navigationitem"
+            onClick={() => this.props.history.push('/ceny')}
+          >
+            Nastavenie cien
+          </ListGroupItem>
+          <ListGroupItem
+            className="navigationitem"
+            onClick={() => this.props.history.push('/mesacny_prehlad_jedalen')}
+          >
             Zobraziť objednávky
           </ListGroupItem>
-          <ListGroupItem tag="a" href="mazanie_pouzivatelov">
+          <ListGroupItem
+            className="navigationitem"
+            onClick={() => this.props.history.push('/mazanie_pouzivatelov')}
+          >
             Mazanie používateľov
           </ListGroupItem>
-          <ListGroupItem tag="a" href="mazanie_stravnikov">
+          <ListGroupItem
+            className="navigationitem"
+            onClick={() => this.props.history.push('/mazanie_stravnikov')}
+          >
             Mazanie stravníkov
           </ListGroupItem>
         </ListGroup>
@@ -86,28 +124,19 @@ class Jedalen extends React.Component {
           <div className="jedalenupozornenia">
             <textarea
               className="jedalentextarea"
-              value={this.state.value}
-              onChange={this.handleChange}
+              value={notice}
+              onChange={(e) => {
+                updateValue(['notice'], e.target.value, 'Set notice value')
+              }}
             />
           </div>
-          <ButtonGroup className="buttons">
-            <Button
-              color="success"
-              onClick={() => {
-                this.changeEditMode()
-              }}
-            >
-              Uložiť zmeny
-            </Button>
-            <Button
-              color="primary"
-              onClick={() => {
-                this.updateComponentValue()
-              }}
-            >
-              Zanechať pôvodný text
-            </Button>
-          </ButtonGroup>
+          <Button
+            className="jedalenbtnupozornenia"
+            color="success"
+            onClick={() => getApi().saveNotice(notice)}
+          >
+            Uložiť upozornenia
+          </Button>
         </div>
         <img src={Poz} className="jedalenpozadie" alt="pozadie" />
       </div>
@@ -115,4 +144,7 @@ class Jedalen extends React.Component {
   }
 }
 
-export default connect()(Jedalen)
+export default connect(
+  (state) => ({notice: state.notice, week: state.week}),
+  {updateValue}
+)(Jedalen)

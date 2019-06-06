@@ -1,15 +1,19 @@
 import React from 'react'
 import {Table} from 'reactstrap'
 import {getApi} from '../Api'
+import Delete from '../obrazky/delete.png'
 import './Jedalen_mazanie_stravnikov.css'
 
 class MazanieStravnikov extends React.Component {
   state = {boarders: []}
 
-  async componentDidMount() {
+  async fetchBoarders() {
     const boarders = await getApi().getAllBoarders()
-    // eslint-disable-next-line
     this.setState({boarders})
+  }
+
+  componentDidMount() {
+    this.fetchBoarders()
   }
 
   render() {
@@ -20,11 +24,11 @@ class MazanieStravnikov extends React.Component {
         <Table className="table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Surame</th>
+              <th>Meno</th>
+              <th>Priezvisko</th>
               <th>Diéta</th>
-              <th>Id pouívateľa</th>
-              <th>Delete</th>
+              <th>Id používateľa</th>
+              <th>Vymazať</th>
             </tr>
           </thead>
           <tbody>
@@ -34,7 +38,17 @@ class MazanieStravnikov extends React.Component {
                 <td>{b.surname}</td>
                 <td>{b.diet}</td>
                 <td>{b.user_id}</td>
-                <td>TODO BUTTON</td>
+                <td>
+                  <img
+                    src={Delete}
+                    className="btndeletestravnici"
+                    alt="delete"
+                    onClick={async () => {
+                      await getApi().removeBoarder(b.id)
+                      this.fetchBoarders()
+                    }}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>

@@ -1,43 +1,54 @@
 .bb{
     width: 50%;
     float: left;
-    }
+}
     
-    .cc{
-        width: 50%; 
-        height: -webkit-fill-available;
-        float: right;  
-        background-color: #bbb; 
-        padding: 15px;
-        
-    }
+.cc{
+    width: 50%; 
+    height: -webkit-fill-available;
+    float: right;  
+    background-color: #bbb; 
+    padding: 15px;
     
-    .jedalenupozornenia{
-        background-color: white;
-        width: 100%;
-        height: 515px;
-        padding: 5px;
-        border-radius: 20px;
-    }
+}
 
-    .jedalentextarea{        
-        height: 505px;
-        padding: 7px;
-        width: 100%;        
-        border-radius: 20px;
-    }
-    
-    .buttons{
-        padding: 5px;
-    margin-left: 30%;
-    }
-    
-    .jedalenpozadie{
-      width: 50%;
-      float: left;
-      height: 392px;
-    }
+.jedalenupozornenia{
+    background-color: white;
+    width: 100%;
+    height: 515px;
+    padding: 5px;
+    border-radius: 20px;
+}
 
-    .skuska{
-        width: 480px;        
-    }
+.jedalentextarea{        
+    height: 505px;
+    padding: 7px;
+    width: 100%;        
+    border-radius: 20px;
+    outline: none;
+}
+
+.buttons{
+    padding: 5px;
+margin-left: 30%;
+}
+
+.jedalenpozadie{
+    width: 50%;
+    float: left;
+    height: 392px;
+}
+
+.jedalennasledtyzdenokno{
+    width: 500px;        
+}
+
+.jedalenbtnupozornenia{
+    margin-top: 7px;
+    margin-left: 40%;
+}
+
+.navigationitem {
+    cursor: pointer;
+    color: #1a0dab;
+}

@@ -14,17 +14,7 @@ class ProfilStravnik extends React.Component {
         <img src={Pozadie} className="pozadiestravnik" alt="pozadie" />
         <Form className="nastavenie">
           <div className="vnutro">
-            <span className="char1">O</span>
-            <span className="char2">s</span>
-            <span className="char3">o</span>
-            <span className="char4">b</span>
-            <span className="char5">n</span>
-            <span className="char6">é</span>
-            <span className="char7">ú</span>
-            <span className="char8">d</span>
-            <span className="char9">a</span>
-            <span className="char10">j</span>
-            <span className="char11">e</span>
+            <h3>Osobné údaje </h3>
             <FormGroup row>
               <Label for="name" sm={2}>
                 Meno:
@@ -97,7 +87,7 @@ class ProfilStravnik extends React.Component {
               >
                 Uložiť
               </Button>
-              <Button color="danger" href="hlavna">
+              <Button color="danger" onClick={() => this.props.history.push('/hlavna')}>
                 Zrušiť
               </Button>
             </ButtonGroup>

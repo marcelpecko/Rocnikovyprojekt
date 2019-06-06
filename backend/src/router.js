@@ -1,7 +1,11 @@
 const express = require('express')
 const fs = require('fs')
 const path = require('path')
+const {promisify} = require('util')
 const router = express.Router()
+
+const readFile = promisify(fs.readFile)
+const writeFile = promisify(fs.writeFile)
 
 // To start database run:
 // "sudo service postgresql start"
@@ -12,6 +16,7 @@ const HttpStatusCodes = {
   OK: 200,
   NOT_FOUND: 404,
   BAD_REQUEST: 400,
+  INTERNAL_SERVER_ERROR: 500,
 }
 
 const dbConfiguration = {
@@ -65,19 +70,6 @@ const addBoarder = async (req, res) => {
   res.status(HttpStatusCodes.OK).send()
 }
 
-const removeBoarder = async (req, res) => {
-  const {user, boarder} = req.body
-  const userId = await getUserIdFromEmail(user.email)
-  const {name, surname, diet} = boarder
-  await db.none('INSERT INTO boarders (user_id, name, surname, diet) VALUES ($1, $2, $3, $4)', [
-    userId,
-    name,
-    surname,
-    diet,
-  ])
-  res.status(HttpStatusCodes.OK).send()
-}
-
 const getBoarders = async (req, res) => {
   const {email} = req.query
   if (email) {
@@ -91,23 +83,15 @@ const getBoarders = async (req, res) => {
 }
 
 const setMenu = async (req, res) => {
-  fs.writeFile(path.join(__dirname, '..', 'data', 'menu.txt'), JSON.stringify(req.body), (err) => {
-    if (err) {
-      console.error(err)
-    } else {
-      res.status(HttpStatusCodes.OK).send()
-    }
-  })
+  const oldMenu = await readFile(path.join(__dirname, '..', 'data', 'menu.txt'))
+  await writeFile(path.join(__dirname, '..', 'data', 'stareMenu.txt'), oldMenu)
+  await writeFile(path.join(__dirname, '..', 'data', 'menu.txt'), JSON.stringify(req.body))
+  res.status(HttpStatusCodes.OK).send()
 }
 
 const getMenu = async (req, res) => {
-  fs.readFile(path.join(__dirname, '..', 'data', 'menu.txt'), (err, data) => {
-    if (err) {
-      console.error(err)
-    } else {
-      res.status(HttpStatusCodes.OK).json(JSON.parse(data.toString()))
-    }
-  })
+  const data = await readFile(path.join(__dirname, '..', 'data', 'menu.txt'))
+  res.status(HttpStatusCodes.OK).json(JSON.parse(data.toString()))
 }
 
 const saveMenuChoices = async (req, res) => {
@@ -125,6 +109,43 @@ const getMenuChoices = async (req, res) => {
   res.status(HttpStatusCodes.OK).json(menuChoices)
 }
 
+const saveNotice = async (req, res) => {
+  await writeFile(path.join(__dirname, '..', 'data', 'upozornenia.txt'), req.body.notice)
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const getNotice = async (req, res) => {
+  const data = await readFile(path.join(__dirname, '..', 'data', 'upozornenia.txt'))
+  res.status(HttpStatusCodes.OK).send(data.toString())
+}
+
+const removeUser = async (req, res) => {
+  const {userId} = req.params
+  await db.none('DELETE FROM users WHERE id = $1', userId)
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const removeBoarder = async (req, res) => {
+  const {boarderId} = req.params
+  await db.none('DELETE FROM boarders WHERE id = $1', boarderId)
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const getOldMenu = async (req, res) => {
+  const data = await readFile(path.join(__dirname, '..', 'data', 'stareMenu.txt'))
+  res.status(HttpStatusCodes.OK).json(JSON.parse(data.toString()))
+}
+
+const savePrices = async (req, res) => {
+  await writeFile(path.join(__dirname, '..', 'data', 'ceny.txt'), JSON.stringify(req.body.prices))
+  res.status(HttpStatusCodes.OK).send()
+}
+
+const getPrices = async (req, res) => {
+  const data = await readFile(path.join(__dirname, '..', 'data', 'ceny.txt'))
+  res.status(HttpStatusCodes.OK).json(JSON.parse(data))
+}
+
 router.get('/', sampleRequest)
 router.post('/register', registerUser)
 router.get('/users', getUsers)
@@ -134,5 +155,12 @@ router.get('/menu', getMenu)
 router.post('/menu', setMenu)
 router.post('/menuChoices', saveMenuChoices)
 router.get('/menuChoices', getMenuChoices)
+router.post('/notice', saveNotice)
+router.get('/notice', getNotice)
+router.delete('/users/:userId', removeUser)
+router.delete('/boarders/:boarderId', removeBoarder)
+router.get('/oldMenu', getOldMenu)
+router.post('/prices', savePrices)
+router.get('/prices', getPrices)
 
 module.exports = router

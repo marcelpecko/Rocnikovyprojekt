@@ -16,7 +16,7 @@ class Zobrazenie extends React.Component {
           <Table>
             <thead className="jvrch">
               <tr>
-                <th className="jtabulkadni">Týždeň:</th>
+                <th className="jtabulkadni">Týždeň: {this.props.week}</th>
                 <th> {this.props.week}</th>
                 <th />
                 <th>Odhlasujem</th>
@@ -51,10 +51,10 @@ class Zobrazenie extends React.Component {
             </tbody>{' '}
           </Table>
           <ButtonGroup className="jvyberzlistkabuttony">
-            <Button color="success" href="nastavenie_listka">
+            <Button color="success" onClick={() => this.props.history.push('/nastavenie_listka')}>
               Nahrať iný jedálny lístok
             </Button>
-            <Button color="primary" href="jedalen">
+            <Button color="primary" onClick={() => this.props.history.push('/jedalen')}>
               Späť na hlavnú stránku
             </Button>
           </ButtonGroup>
@@ -64,4 +64,4 @@ class Zobrazenie extends React.Component {
   }
 }
 
-export default connect((state) => ({menu: state.menu}))(Zobrazenie)
+export default connect((state) => ({menu: state.menu, week: state.week}))(Zobrazenie)

@@ -19,8 +19,18 @@ class Stravnici extends React.Component {
               Diéta: <span className="stravnikInfo">{b.diet}</span>
               <ButtonGroup className="stravnikbutton">
                 <Button
+                  color="primary"
+                  onClick={() => {
+                    this.props.updateValue(['currentBoarderId'], b.id, 'Set current boarder id')
+                    this.props.history.push('obed')
+                  }}
+                >
+                  Objenaný obed
+                </Button>
+                <Button
                   color="secondary"
                   onClick={() => {
+                    this.props.updateValue(['currentBoarderId'], b.id, 'Set current boarder id')
                     this.props.history.push('mesacny_prehlad_stravnik')
                   }}
                 >

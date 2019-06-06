@@ -1,6 +1,6 @@
 import React from 'react'
 import MyForm from '../Prihlasenie'
-import {Route} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 import HlavnaStranka from '../Hlavna_stranka'
 import Registracia from '../Registracia'
 import Stravnik from '../Nastavenie_profilu_stravnik'
@@ -13,9 +13,11 @@ import NastavenieListka from '../Jedalen_nastavenie_listka'
 import MesacnyPrehladJedalen from '../Jedalen_mesacny_prehlad'
 import Zobrazenie from '../Jedalen_nastavenie_listka/Zobrazenie'
 import MesacnyPrehladStravnik from '../Mesacny_prehlad_stravnik'
+import ObjednanyObedStravnik from '../Objednany_obed_stravnik'
+import JedalenNastavenieCien from '../Jedalen_nastavenie_cien'
 
 const App = () => (
-  <div>
+  <Switch>
     <Route exact path="/" component={MyForm} />
     <Route path="/hlavna" component={HlavnaStranka} />
     <Route path="/registracia" component={Registracia} />
@@ -29,7 +31,9 @@ const App = () => (
     <Route path="/mesacny_prehlad_stravnik" component={MesacnyPrehladStravnik} />
     <Route path="/mesacny_prehlad_jedalen" component={MesacnyPrehladJedalen} />
     <Route path="/zobrazenie" component={Zobrazenie} />
-  </div>
+    <Route path="/obed" component={ObjednanyObedStravnik} />
+    <Route path="/ceny" component={JedalenNastavenieCien} />
+  </Switch>
 )
 
 export default App

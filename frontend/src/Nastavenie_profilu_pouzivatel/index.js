@@ -38,22 +38,7 @@ export default class Prihlasovanie extends React.Component {
         <div className="nastavenie-informacii">
           <Form>
             Osobné údaje <br />
-            <FormGroup row>
-              <Label for="name" sm={2}>
-                Meno:
-              </Label>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="surname" sm={2}>
-                Priezvisko:
-              </Label>
-            </FormGroup>
-            <FormGroup row>
-              <Label for="email" sm={2}>
-                Email:
-              </Label>
-            </FormGroup>
-            <br />Zmena hesla
+            Zmena hesla
             <FormGroup row>
               <Label for="examplePassword" sm={2}>
                 Staré heslo:
@@ -93,10 +78,9 @@ export default class Prihlasovanie extends React.Component {
                 />
               </Col>
             </FormGroup>
-            <ButtonGroup>
+            <ButtonGroup className="btnuserseting">
               <Button
                 color="success"
-                className="nastav"
                 onClick={() => {
                   this.props.history.push('hlavna')
                 }}

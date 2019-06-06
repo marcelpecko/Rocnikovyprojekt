@@ -4,15 +4,13 @@
     padding: 10px;
     margin-right: 35%; 
     margin-top: 85px;     
-    font-weight: bold;
-    background-color: white;
-    border-radius: 250px;
+    font-weight: bold;    
     float: right;
     position:relative;
   }  
 
   .vnutro{
-     margin:27%;
+     margin:20%; 
      width: 600px;    
   }
 
@@ -27,83 +25,4 @@
     background-size: cover;
     top: 0;
     left: 0;
-  }
-
- 
-
-  .char1 {
-    transform: rotate(-49deg);
-    left: -120px;
-    top: 0px;
-    position: absolute;
-  }
-  
-  .char2 {
-    transform: rotate(-43deg);
-    left: -100px;
-    top: -20px;
-    position: absolute;
-  }
-  
-  .char3 {
-    transform: rotate(-30deg);
-    left: -80px;
-    top: -40px;
-    position: absolute;
-  }
-  
-  .char4 {
-    transform: rotate(-25deg);
-    left: -60px;
-    top: -60px;
-    position: absolute;
-  }
-  
-  .char5 {
-    transform: rotate(-49deg);
-    left: -40px;
-    top: -80px;
-    position: absolute;
-  }
-  
-  .char6 {
-    transform: rotate(-37deg);
-    left: -20px;
-    top: -100px;
-    position: absolute;
-  }
-
-  .char7 {
-    transform: rotate(-37deg);
-    left: 0px;
-    top: -120px;
-    position: absolute;
-  }
-
-  .char8 {
-    transform: rotate(-37deg);
-    left: 20px;
-    top: -125px;
-    position: absolute;
-  }
-
-  .char9 {
-    transform: rotate(-37deg);
-    left: 40px;
-    top: -130px;
-    position: absolute;
-  }
-
-  .char10 {
-    transform: rotate(-37deg);
-    left: 60px;
-    top: -140px;
-    position: absolute;
-  }
-
-  .char11 {
-    transform: rotate(-37deg);
-    left: 80px;
-    top: -150px;
-    position: absolute;
   }

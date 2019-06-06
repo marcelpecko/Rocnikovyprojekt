@@ -27,8 +27,6 @@ CREATE TABLE menus (
     choices TEXT[] NOT NULL
 );
 
-
-
 INSERT INTO users (name, surname, email, password) VALUES ('marcel', 'pecko', 'a@a.a', 'aaa');
 INSERT INTO users (name, surname, email, password) VALUES ('admin', 'admin', 'admin@admin.sk', 'aaa');
-INSERT INTO boarders (user_id, name, surname, diet) VALUES (1, 'A', 'B', 'bezlaktozova');
+INSERT INTO boarders (user_id, name, surname, diet) VALUES (1, 'A', 'B', 'normal');

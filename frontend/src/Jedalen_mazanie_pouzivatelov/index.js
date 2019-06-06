@@ -2,16 +2,19 @@ import React from 'react'
 import {Table} from 'reactstrap'
 import {connect} from 'react-redux'
 import './Jedalen_mazanie_pouzivatelov.css'
+import Delete from '../obrazky/delete.png'
 import {getApi} from '../Api'
 
 class MazaniePouzivatelov extends React.Component {
   state = {users: []}
 
-  async componentDidMount() {
+  fetchUsers = async () => {
     const users = await getApi().getUsers()
-    console.log(users)
-    // eslint-disable-next-line
     this.setState({users})
+  }
+
+  componentDidMount() {
+    this.fetchUsers()
   }
 
   render() {
@@ -23,10 +26,10 @@ class MazaniePouzivatelov extends React.Component {
           <thead>
             <tr>
               <th>Id</th>
-              <th>Name</th>
-              <th>Surame</th>
+              <th>Meno</th>
+              <th>Priezvisko</th>
               <th>Email</th>
-              <th>Delete</th>
+              <th>Vymazať</th>
             </tr>
           </thead>
           <tbody>
@@ -36,7 +39,18 @@ class MazaniePouzivatelov extends React.Component {
                 <td>{user.name}</td>
                 <td>{user.surname}</td>
                 <td>{user.email}</td>
-                <td>TODO BUTTON</td>
+                <td>
+                  {' '}
+                  <img
+                    src={Delete}
+                    className="btndeletepouzivatelia"
+                    alt="delete"
+                    onClick={async () => {
+                      await getApi().removeUser(user.id)
+                      this.fetchUsers()
+                    }}
+                  />
+                </td>
               </tr>
             ))}
           </tbody>

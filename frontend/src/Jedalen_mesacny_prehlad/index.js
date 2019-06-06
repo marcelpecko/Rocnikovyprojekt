@@ -25,23 +25,29 @@ class MesacnyPrehlad extends React.Component {
             <tr>
               <th>Dieťa</th>
               <th>Týždeň</th>
-              <th>Deň</th>
-              <th>Obed</th>
+              <th>Pondelok</th>
+              <th>Utorok</th>
+              <th>Streda</th>
+              <th>Štvrtok</th>
+              <th>Piatok</th>
             </tr>
           </thead>
           <tbody>
-            {flatten(
-              data.map((entry) =>
-                DAYS.map((day, ind) => (
-                  <tr key={entry.id}>
-                    <td>{boarders[entry.boarder_id].name}</td>
-                    <td>{entry.week}</td>
-                    <td>{day}</td>
-                    <td>{entry.choices[ind]}</td>
-                  </tr>
-                ))
-              )
-            )}
+            {data.map((
+              entry // tu bolo flatten ale vzmazal som to
+            ) => (
+              <tr key={entry.id}>
+                <td>
+                  {`${boarders[entry.boarder_id].name} ${boarders[entry.boarder_id].surname}`}
+                </td>
+                <td>{entry.week}</td>
+                <td>{entry.choices[0]}</td>
+                <td>{entry.choices[1]}</td>
+                <td>{entry.choices[2]}</td>
+                <td>{entry.choices[3]}</td>
+                <td>{entry.choices[4]}</td>
+              </tr>
+            ))}
           </tbody>
         </Table>
       </dir>
