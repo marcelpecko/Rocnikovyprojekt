@@ -2,9 +2,7 @@ import React from 'react'
 import {Table} from 'reactstrap'
 import './Jedalen_mesacny_prehlad.css'
 import {getApi} from '../Api'
-import {flatten, keyBy} from 'lodash'
-
-const DAYS = ['Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok']
+import {keyBy} from 'lodash'
 
 class MesacnyPrehlad extends React.Component {
   state = {data: [], boarders: {}}
@@ -34,7 +32,7 @@ class MesacnyPrehlad extends React.Component {
           </thead>
           <tbody>
             {data.map((
-              entry // tu bolo flatten ale vzmazal som to
+              entry // tu bolo flatten ale vymazal som to
             ) => (
               <tr key={entry.id}>
                 <td>

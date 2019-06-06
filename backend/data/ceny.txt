@@ -1,1 +1,1 @@
-{"normal":"1","glutenFree":"2","lactoseFree":"3","sugarFree":"4","transport":"5"}
+{"normal":"5","glutenFree":"5","lactoseFree":"5","sugarFree":"5","transport":"5"}

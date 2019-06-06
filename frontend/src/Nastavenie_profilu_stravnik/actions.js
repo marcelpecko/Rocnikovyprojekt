@@ -1,4 +1,4 @@
-import {updateValue, loadBoarders} from '../sharedActions'
+import {loadBoarders} from '../sharedActions'
 
 export const addBoarder = () => async (dispatch, getState, {api, logger, history}) => {
   logger.log('Add boarder')

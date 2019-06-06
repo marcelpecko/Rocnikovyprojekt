@@ -83,25 +83,13 @@ class VyberZListka extends React.Component {
               ))}
             </tbody>{' '}
           </Table>
-
-          <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-            <ModalHeader toggle={this.toggle}>Úspešne objednané menu</ModalHeader>
-            <ModalFooter>
-              <Button
-                color="success"
-                onClick={() => {
-                  this.props.history.push('hlavna')
-                }}
-              >
-                Späť na hlavnú stránku
-              </Button>
-            </ModalFooter>
-          </Modal>
-
           <ButtonGroup className="vyberzlistkabuttony">
             <Button
               color="success"
-              onClick={() => this.props.saveMenuChoices(this.state.chosenOptions)}
+              onClick={() => {
+                this.props.saveMenuChoices(this.state.chosenOptions)
+                this.props.history.push('hlavna')
+              }}
             >
               Uložiť
             </Button>

@@ -42,6 +42,9 @@ class MesacnyPrehladStravnik extends React.Component {
     }
 
     const lunchPrice = prices[keyBy(boarders, 'id')[currentBoarderId].diet]
+
+    console.log(lunchPrice, lunches, prices)
+
     return (
       <div>
         <div>

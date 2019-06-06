@@ -7,6 +7,14 @@ import {addBoarder} from './actions'
 import './Nastavenie_profilu_stravnik.css'
 
 class ProfilStravnik extends React.Component {
+  getDietName(value) {
+    if (value === 'Žiadna') return 'normal'
+    if (value === 'Bezlepková') return 'glutenFree'
+    if (value === 'Bezlaktózová') return 'lactoseFree'
+    if (value === 'Diabetická') return 'sugarFree'
+    else return 'normal'
+  }
+
   render() {
     const {name, surname, diet} = this.props.boarder
     return (
@@ -61,19 +69,18 @@ class ProfilStravnik extends React.Component {
                 <Input
                   type="select"
                   value={diet}
-                  onChange={(event) =>
+                  onChange={(event) => {
                     this.props.updateValue(
                       ['boarder', 'diet'],
-                      event.target.value,
+                      this.getDietName(event.target.value),
                       'Change boarder diet'
                     )
-                  }
+                  }}
                 >
                   <option>Žiadna</option>
                   <option>Bezlepková</option>
                   <option>Bezlaktózová</option>
                   <option>Diabetická</option>
-                  <option>Iná</option>
                 </Input>
               </Col>
             </FormGroup>
