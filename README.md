@@ -14,7 +14,7 @@ Aplikácia zľahčujúca objednávanie obedov
 
 ## Run backend
 
-1. Run by `yarn start` in the /rocnikovyprojekt/backedn
+1. Run by `yarn start` in the /rocnikovyprojekt/backend
 
 ## Run database
 1. sudo service postgresql start
